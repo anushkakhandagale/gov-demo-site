@@ -15,4 +15,14 @@ const faqData = [
     key: "contact",
     answer: "Please refer to the Contact section for official helpline details."
   }
+    {
+    key: "director",
+    answer: "The Director of Higher Education, Pune is Dr. Shailendra Deolankar, Incharge Director, Higher Education. For official communication, please refer to the Contact section."
+  },
+  {
+    key: "joint director",
+    answer: "The Joint Director of Higher Education, Pune is Dr. Archana Borhade. She assists in administrative and academic functions of the department."
+  }
+
 ];
+
