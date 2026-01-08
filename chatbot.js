@@ -1,21 +1,33 @@
 const chatBody = document.getElementById("chat-body");
 const chatInput = document.getElementById("chat-input");
 
+function addMessage(sender, message) {
+  const div = document.createElement("div");
+  div.innerHTML = `<b>${sender}:</b> ${message}`;
+  chatBody.appendChild(div);
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
+
 chatInput.addEventListener("keypress", function (e) {
   if (e.key === "Enter") {
-    const userMsg = chatInput.value.toLowerCase();
-    chatBody.innerHTML += `<div><b>You:</b> ${userMsg}</div>`;
+    const userMsg = chatInput.value.trim().toLowerCase();
+    if (userMsg === "") return;
 
-    let botReply = "Sorry, please check the FAQ section.";
+    addMessage("You", userMsg);
 
-    faqData.forEach(item => {
-      if (userMsg.includes(item.key)) {
-        botReply = item.answer;
+    let botReply = "Sorry, please refer to the FAQ or Contact section.";
+
+    for (let i = 0; i < faqData.length; i++) {
+      if (userMsg.includes(faqData[i].key)) {
+        botReply = faqData[i].answer;
+        break;
       }
-    });
+    }
 
-    chatBody.innerHTML += `<div><b>Bot:</b> ${botReply}</div>`;
+    setTimeout(() => {
+      addMessage("Bot", botReply);
+    }, 300);
+
     chatInput.value = "";
-    chatBody.scrollTop = chatBody.scrollHeight;
   }
 });
